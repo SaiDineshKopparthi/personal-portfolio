@@ -1,11 +1,60 @@
-const scrollTopBtn = document.querySelector('.scroll-top-btn')
+/*====================== scroll section active link ====================*/
+let sections = document.querySelectorAll('section')
+let navLinks = document.querySelectorAll('header nav a')
+let scrollTopButton = document.getElementById('scroll-top-btn')
+let header = document.querySelector('header')
+let menuIcon = document.querySelector('#menu-icon')
+let navbar = document.querySelector('.navbar')
 
-const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
-        scrollTopBtn.classList.add('active')
-    } else {
-        scrollTopBtn.classList.remove('active')
-    }
-};
+const typed = new Typed('.multiple-text', {
+    strings: ['MERN Stack Developer', 'iOS Developer'],
+    typeSpeed: 100,
+    backSpeed: 100,
+    backDelay: 1000,
+    loop: true
+})
 
-window.addEventListener('scroll', toggleVisibility);
+/*====================== toggle icon navbar ====================*/  
+menuIcon.onclick = () => {
+    menuIcon.classList.toggle('bx-x');
+    navbar.classList.toggle('active');
+}
+
+window.onscroll = () => {
+
+    scrollTopButton.classList.toggle('active', window.scrollY > 300);
+
+    sections.forEach(sec => {
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 150;
+        let height = sec.offsetHeight;
+        let id = sec.getAttribute('id');
+
+        if (top >= offset && top < offset + height) {
+            navLinks.forEach(links => {
+                links.classList.remove('active');
+                document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+            })
+        }
+    })
+
+    /*====================== Sticky Nav Bar ====================*/
+    header.classList.toggle('sticky', window.scrollY > 100);
+
+    /*====================== toggle icon navbar when scrolling ====================*/
+    menuIcon.classList.remove('bx-x');
+    navbar.classList.remove('active');
+}
+
+/*====================== Scroll Reveal ====================*/
+ScrollReveal({
+    // reset: true,
+    distance: '80px',
+    duration: 2000,
+    delay: 200
+})
+
+ScrollReveal().reveal('.home-content, .heading', {origin: 'top'});
+ScrollReveal().reveal('.home-img, .portfolio-box, .work-exp-container, .contact form', {origin: 'bottom'});
+ScrollReveal().reveal('.home-content h1, .about-img', {origin: 'left'});
+ScrollReveal().reveal('.home-content p, .about-content', {origin: 'right'});
