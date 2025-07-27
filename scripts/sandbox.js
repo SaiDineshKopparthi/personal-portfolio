@@ -65,9 +65,9 @@ ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 
 /*====================== EmailJS Set-up ====================*/
 document.addEventListener("DOMContentLoaded", function () {
-  const pubKey = window.EMAILJS_PUBLIC_KEY;
-  const serviceId = window.EMAILJS_SERVICE_ID;
-  const templateId = window.EMAILJS_TEMPLATE_ID;
+  const pubKey = "XJKJRWg2WkOl_pSGE";
+  const serviceId = "service_g7hjz78";
+  const templateId = "template_8zg1r45";
 
   if (!pubKey || !serviceId || !templateId) {
     console.warn("EmailJS environment variables are missing.");
