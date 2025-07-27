@@ -64,39 +64,17 @@ ScrollReveal().reveal(".home-content h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-content p, .about-content", { origin: "right" });
 
 /*====================== EmailJS Set-up ====================*/
-// document.addEventListener("DOMContentLoaded", function () {
-//   emailjs.init("XJKJRWg2WkOl_pSGE"); // Replace with actual public key
-
-//   const form = document.getElementById("contact-form");
-//   const submitBtn = form.querySelector("input[type='submit']");
-//   const originalBtnText = submitBtn.value;
-
-//   form.addEventListener("submit", function (e) {
-//     e.preventDefault();
-
-//     submitBtn.disabled = true;
-//     submitBtn.value = "Sending...";
-
-//     emailjs
-//       .sendForm("service_g7hjz78", "template_8zg1r45", form)
-//       .then(() => {
-//         alert("Message sent successfully!");
-//         form.reset();
-//       })
-//       .catch((error) => {
-//         console.error("FAILED...", error);
-//         alert("Failed to send message. Please try again.");
-//       })
-//       .finally(() => {
-//         submitBtn.disabled = false;
-//         submitBtn.value = originalBtnText;
-//       });
-//   });
-// });
-
-
 document.addEventListener("DOMContentLoaded", function () {
-  emailjs.init(EMAILJS_PUBLIC_KEY);
+  const pubKey = window.EMAILJS_PUBLIC_KEY;
+  const serviceId = window.EMAILJS_SERVICE_ID;
+  const templateId = window.EMAILJS_TEMPLATE_ID;
+
+  if (!pubKey || !serviceId || !templateId) {
+    console.warn("EmailJS environment variables are missing.");
+    return;
+  }
+
+  emailjs.init(pubKey);
 
   const form = document.getElementById("contact-form");
   const submitBtn = form.querySelector("input[type='submit']");
@@ -118,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
     submitBtn.classList.add("loading");
 
     emailjs
-      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form)
+      .sendForm(serviceId, templateId, form)
       .then(() => {
         showToast("Message sent successfully!");
         form.reset();
@@ -132,3 +110,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+

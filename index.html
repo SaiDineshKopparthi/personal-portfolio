@@ -249,7 +249,7 @@
     <section class="contact" id="contact">
       <h2 class="heading"><span>Contact</span> Me!</h2>
 
-      <form id="contact-form">
+      <form id="contact-form" action="#" method="POST" autocomplete="off">
         <div class="input-box">
           <input
             type="text"
@@ -301,17 +301,10 @@
     <div id="toast" class="toast"></div>
 
     <!-- Load config securely -->
-    <script src="config.js"></script>
+    <script src="env.js"></script>
 
     <!-- Load EmailJS v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-    <!-- Initialize EmailJS using config -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        emailjs.init(EMAILJS_PUBLIC_KEY);
-      });
-    </script>
 
     <script src="/scripts/sandbox.js" defer></script>
   </body>
