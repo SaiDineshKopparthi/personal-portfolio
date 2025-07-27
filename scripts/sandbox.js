@@ -69,10 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const serviceId = "service_g7hjz78";
   const templateId = "template_8zg1r45";
 
-  if (!pubKey || !serviceId || !templateId) {
-    console.warn("EmailJS environment variables are missing.");
-    return;
-  }
+  // if (!pubKey || !serviceId || !templateId) {
+  //   console.warn("EmailJS environment variables are missing.");
+  //   return;
+  // }
 
   emailjs.init(pubKey);
 
